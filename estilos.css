@@ -1,28 +1,43 @@
 body {
-  font-family: sans-serif;
-  text-align: center;
-  background: #fce4ec;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff0f5;
   color: #880e4f;
   margin: 0;
   padding: 20px;
+  text-align: center;
 }
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.semestre {
+  background-color: #f8bbd0;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.semestre h2 {
+  color: #ad1457;
+  margin-bottom: 10px;
+}
+.ramos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 10px;
 }
-.cell {
-  background: #f8bbd0;
-  padding: 15px;
+.ramo {
+  background-color: #fce4ec;
+  padding: 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
+  transition: all 0.2s ease;
 }
-.cell:hover {
-  background: #ec407a;
+.ramo:hover {
+  background-color: #ec407a;
   color: white;
   transform: scale(1.05);
 }
