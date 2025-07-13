@@ -1,86 +1,98 @@
 const ramos = [
-  { id: 1, nombre: "Biología celular e histología", requisitos: [] },
-  { id: 2, nombre: "Anatomía general", requisitos: [] },
-  { id: 3, nombre: "Matemáticas", requisitos: [] },
-  { id: 4, nombre: "Fundamentos de enfermería", requisitos: [] },
-  { id: 5, nombre: "Educación en enfermería", requisitos: [] },
-  { id: 6, nombre: "Electivo de comunicación", requisitos: [] },
-  { id: 7, nombre: "Microbiología y parasitología", requisitos: [1] },
-  { id: 8, nombre: "Química general y orgánica", requisitos: [] },
-  { id: 9, nombre: "Bioestadística", requisitos: [3] },
-  { id: 10, nombre: "Socio antropología", requisitos: [] },
-  { id: 11, nombre: "Enfermería basada en la evidencia", requisitos: [] },
-  { id: 12, nombre: "Electivo de desarrollo en pensamiento", requisitos: [] },
-  { id: 13, nombre: "Fisiología general", requisitos: [2, 7] },
-  { id: 14, nombre: "Psicología general y del desarrollo", requisitos: [] },
-  { id: 15, nombre: "Bioquímica", requisitos: [8] },
-  { id: 16, nombre: "Enfermería en salud pública y determinantes sociales", requisitos: [] },
-  { id: 17, nombre: "Gestión del cuidado en enfermería", requisitos: [2, 5, 7, 8, 11] },
-  { id: 18, nombre: "Electivo de comunicación", requisitos: [] },
-  { id: 19, nombre: "Fisiopatología", requisitos: [13] },
-  { id: 20, nombre: "Farmacología", requisitos: [13, 15] },
-  { id: 21, nombre: "Gestión en servicios de salud", requisitos: [16] },
-  { id: 22, nombre: "Herramientas informáticas para la gestión en salud", requisitos: [16] },
-  { id: 23, nombre: "Integrado de ciclo inicial", requisitos: [5, 10, 13, 15, 16] },
-  { id: 24, nombre: "Gestión del cuidado de la mujer", requisitos: [] },
-  { id: 25, nombre: "Calidad en la gestión del cuidado", requisitos: [21] },
-  { id: 26, nombre: "Gestión del cuidado en adulto y adulto mayor", requisitos: [17, 19, 20, 23] },
-  { id: 27, nombre: "Gestión del cuidado en comunidades I (A+S)", requisitos: [17, 19, 20, 23] },
-  { id: 28, nombre: "Enfermería del adulto mayor", requisitos: [] },
-  { id: 29, nombre: "Electivo de ética", requisitos: [] },
-  { id: 30, nombre: "Bioética", requisitos: [29] },
-  { id: 31, nombre: "Metodología de la investigación", requisitos: [9, 11, 22] },
-  { id: 32, nombre: "Gestión del cuidado en salud mental", requisitos: [] },
-  { id: 33, nombre: "Cuidados paliativos y proceso de morir", requisitos: [28] },
-  { id: 34, nombre: "Proyecto de la investigación I", requisitos: [31] },
-  { id: 35, nombre: "Gestión del cuidado de urgencia", requisitos: [26, 27] },
-  { id: 36, nombre: "Gestión del cuidado del niño y adolescente", requisitos: [26, 27] },
-  { id: 37, nombre: "Gestión del cuidado de comunidades II", requisitos: [27] },
-  { id: 38, nombre: "Electivo de desarrollo personal", requisitos: [] },
-  { id: 39, nombre: "Proyecto de investigación II", requisitos: [34] },
-  { id: 40, nombre: "Integrado de ciclo intermedio", requisitos: Array.from({ length: 34 }, (_, i) => i + 1).concat([38]) },
-  { id: 41, nombre: "Electivo de responsabilidad social", requisitos: [] },
-  { id: 42, nombre: "Práctica profesional I", requisitos: Array.from({ length: 41 }, (_, i) => i + 1) },
-  { id: 43, nombre: "Práctica profesional II", requisitos: Array.from({ length: 41 }, (_, i) => i + 1) },
-  { id: 44, nombre: "Seminario de integrado en enfermería", requisitos: Array.from({ length: 41 }, (_, i) => i + 1) },
+  { id: 1, nombre: "Biología celular e histología", abre: [7] },
+  { id: 2, nombre: "Anatomía general", abre: [13, 17] },
+  { id: 3, nombre: "Matemáticas", abre: [9] },
+  { id: 4, nombre: "Fundamentos de enfermería", abre: [] },
+  { id: 5, nombre: "Educación en enfermería", abre: [17, 23] },
+  { id: 6, nombre: "Electivo de comunicación", abre: [] },
+  { id: 7, nombre: "Microbiología y parasitología", abre: [13, 17] },
+  { id: 8, nombre: "Química general y orgánica", abre: [15, 17] },
+  { id: 9, nombre: "Bioestadística", abre: [31] },
+  { id: 10, nombre: "Socio antropología", abre: [23] },
+  { id: 11, nombre: "Enfermería basada en la evidencia", abre: [17, 31] },
+  { id: 12, nombre: "Electivo de desarrollo en pensamiento", abre: [] },
+  { id: 13, nombre: "Fisiología general", abre: [19, 20, 23] },
+  { id: 14, nombre: "Psicología general y del desarrollo", abre: [] },
+  { id: 15, nombre: "Bioquímica", abre: [20, 23] },
+  { id: 16, nombre: "Enfermería en salud pública y determinantes sociales", abre: [21, 22, 23] },
+  { id: 17, nombre: "Gestión del cuidado en enfermería", abre: [26, 27] },
+  { id: 18, nombre: "Electivo de comunicación", abre: [] },
+  { id: 19, nombre: "Fisiopatología", abre: [26, 27] },
+  { id: 20, nombre: "Farmacología", abre: [26, 27] },
+  { id: 21, nombre: "Gestión en servicios de salud", abre: [25] },
+  { id: 22, nombre: "Herramientas informáticas para la gestión en salud", abre: [31] },
+  { id: 23, nombre: "Integrado de ciclo inicial", abre: [26, 27] },
+  { id: 24, nombre: "Gestión del cuidado de la mujer", abre: [] },
+  { id: 25, nombre: "Calidad en la gestión del cuidado", abre: [] },
+  { id: 26, nombre: "Gestión del cuidado en adulto y adulto mayor", abre: [34] },
+  { id: 27, nombre: "Gestión del cuidado en comunidades I (A+S)", abre: [35, 36, 37] },
+  { id: 28, nombre: "Enfermería del adulto mayor", abre: [33] },
+  { id: 29, nombre: "Electivo de ética", abre: [30] },
+  { id: 30, nombre: "Bioética", abre: [] },
+  { id: 31, nombre: "Metodología de la investigación", abre: [34] },
+  { id: 32, nombre: "Gestión del cuidado en salud mental", abre: [] },
+  { id: 33, nombre: "Cuidados paliativos y proceso de morir", abre: [] },
+  { id: 34, nombre: "Proyecto de la investigación I", abre: [39] },
+  { id: 35, nombre: "Gestión del cuidado de urgencia", abre: [] },
+  { id: 36, nombre: "Gestión del cuidado del niño y adolescente", abre: [] },
+  { id: 37, nombre: "Gestión del cuidado de comunidades II", abre: [] },
+  { id: 38, nombre: "Electivo de desarrollo personal", abre: [40] },
+  { id: 39, nombre: "Proyecto de investigación II", abre: [] },
+  { id: 40, nombre: "Integrado de ciclo intermedio", abre: [42, 43, 44] },
+  { id: 41, nombre: "Electivo de responsabilidad social", abre: [] },
+  { id: 42, nombre: "Práctica profesional I", abre: [] },
+  { id: 43, nombre: "Práctica profesional II", abre: [] },
+  { id: 44, nombre: "Seminario de integrado en enfermería", abre: [] },
 ];
 
-const mallaDiv = document.getElementById("malla");
-let aprobados = new Set();
+const aprobados = new Set();
 
-function renderMalla() {
-  mallaDiv.innerHTML = "";
+function crearMalla() {
+  const contenedor = document.getElementById("malla-container");
+  contenedor.innerHTML = "";
+
   ramos.forEach(ramo => {
     const div = document.createElement("div");
-    div.className = "ramo";
+    div.classList.add("ramo");
+    div.id = `ramo-${ramo.id}`;
+    div.innerHTML = `<h3>${ramo.id}. ${ramo.nombre}</h3><small>ID: ${ramo.id}</small>`;
 
-    const tieneReq = ramo.requisitos.length > 0;
-    const desbloqueado = ramo.requisitos.every(r => aprobados.has(r));
-
-    if (aprobados.has(ramo.id)) {
-      div.classList.add("aprobado");
-    } else if (tieneReq && !desbloqueado) {
+    if (!puedeAprobar(ramo)) {
       div.classList.add("bloqueado");
     }
 
-    div.innerHTML = `<strong>${ramo.id}. ${ramo.nombre}</strong>`;
-    if (tieneReq) {
-      div.innerHTML += `<small>Requisitos: ${ramo.requisitos.join(", ")}</small>`;
-    }
-
-    div.onclick = () => {
-      if (div.classList.contains("bloqueado")) {
-        alert("Debes aprobar los requisitos primero.");
-        return;
+    div.addEventListener("click", () => {
+      if (!div.classList.contains("bloqueado")) {
+        div.classList.toggle("aprobado");
+        if (div.classList.contains("aprobado")) {
+          aprobados.add(ramo.id);
+        } else {
+          aprobados.delete(ramo.id);
+        }
+        actualizarMalla();
       }
-      if (!aprobados.has(ramo.id)) {
-        aprobados.add(ramo.id);
-        renderMalla();
-      }
-    };
+    });
 
-    mallaDiv.appendChild(div);
+    contenedor.appendChild(div);
   });
 }
 
-renderMalla();
+function puedeAprobar(ramo) {
+  if (ramo.requisitos && ramo.requisitos.length > 0) {
+    return ramo.requisitos.every(id => aprobados.has(id));
+  }
+  return true;
+}
+
+function actualizarMalla() {
+  ramos.forEach(ramo => {
+    const div = document.getElementById(`ramo-${ramo.id}`);
+    if (!aprobados.has(ramo.id) && !puedeAprobar(ramo)) {
+      div.classList.add("bloqueado");
+    } else {
+      div.classList.remove("bloqueado");
+    }
+  });
+}
+
+crearMalla();
