@@ -1,54 +1,56 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #ffe6f0;
-  color: #660033;
+  background-color: #fff0f5;
   margin: 0;
   padding: 20px;
+  color: #333;
 }
 
 h1 {
   text-align: center;
-  color: #cc0066;
+  color: #c71585;
+  margin-bottom: 30px;
 }
 
-#malla {
+.malla {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 15px;
-  margin-top: 30px;
+  padding: 0 10px;
 }
 
 .ramo {
-  background-color: #fff0f5;
-  border: 2px solid #cc99cc;
-  border-radius: 10px;
+  border: 2px solid #ff69b4;
+  background-color: #ffe4ec;
   padding: 15px;
-  text-align: center;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 0.3s;
+  position: relative;
 }
 
 .ramo:hover {
-  background-color: #ffd6eb;
+  background-color: #ffc0cb;
 }
 
-.bloqueado {
-  background-color: #f2f2f2;
-  color: #aaa;
-  border: 2px dashed #ccc;
+.ramo.aprobado {
+  background-color: #d8bfd8;
+  text-decoration: line-through;
+}
+
+.ramo.bloqueado {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.aprobado {
-  background-color: #e6ffe6;
-  border-color: #66cc66;
-  color: #339933;
-  font-weight: bold;
+.ramo h3 {
+  margin: 0 0 8px;
+  color: #8b008b;
 }
 
 .ramo small {
   display: block;
-  margin-top: 10px;
-  font-size: 0.9em;
+  margin-top: 6px;
+  font-size: 0.85em;
   color: #555;
 }
