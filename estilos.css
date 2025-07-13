@@ -1,43 +1,54 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #fff0f5;
-  color: #880e4f;
+  font-family: Arial, sans-serif;
+  background-color: #ffe6f0;
+  color: #660033;
   margin: 0;
   padding: 20px;
-  text-align: center;
 }
+
 h1 {
-  margin-bottom: 30px;
+  text-align: center;
+  color: #cc0066;
 }
-.grid {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-.semestre {
-  background-color: #f8bbd0;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.semestre h2 {
-  color: #ad1457;
-  margin-bottom: 10px;
-}
-.ramos {
+
+#malla {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
 }
+
 .ramo {
-  background-color: #fce4ec;
-  padding: 12px;
-  border-radius: 8px;
+  background-color: #fff0f5;
+  border: 2px solid #cc99cc;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.3s ease;
 }
+
 .ramo:hover {
-  background-color: #ec407a;
-  color: white;
-  transform: scale(1.05);
+  background-color: #ffd6eb;
+}
+
+.bloqueado {
+  background-color: #f2f2f2;
+  color: #aaa;
+  border: 2px dashed #ccc;
+  cursor: not-allowed;
+}
+
+.aprobado {
+  background-color: #e6ffe6;
+  border-color: #66cc66;
+  color: #339933;
+  font-weight: bold;
+}
+
+.ramo small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #555;
 }
