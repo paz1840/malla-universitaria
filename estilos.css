@@ -1,0 +1,28 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #fce4ec;
+  color: #880e4f;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  margin-bottom: 20px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.cell {
+  background: #f8bbd0;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.cell:hover {
+  background: #ec407a;
+  color: white;
+  transform: scale(1.05);
+}
