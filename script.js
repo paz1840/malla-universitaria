@@ -1,5 +1,3 @@
-// script.js
-
 const ramos = [
   { id: 1, nombre: "Biología celular e histología", requisitos: [] },
   { id: 2, nombre: "Anatomía general", requisitos: [] },
@@ -40,49 +38,49 @@ const ramos = [
   { id: 37, nombre: "Gestión del cuidado de comunidades II", requisitos: [27] },
   { id: 38, nombre: "Electivo de desarrollo personal", requisitos: [] },
   { id: 39, nombre: "Proyecto de investigación II", requisitos: [34] },
-  { id: 40, nombre: "Integrado de ciclo intermedio", requisitos: Array.from({length: 34}, (_, i) => i + 1).concat([38]) },
+  { id: 40, nombre: "Integrado de ciclo intermedio", requisitos: Array.from({ length: 34 }, (_, i) => i + 1).concat([38]) },
   { id: 41, nombre: "Electivo de responsabilidad social", requisitos: [] },
-  { id: 42, nombre: "Práctica profesional I", requisitos: Array.from({length: 41}, (_, i) => i + 1) },
-  { id: 43, nombre: "Práctica profesional II", requisitos: Array.from({length: 41}, (_, i) => i + 1) },
-  { id: 44, nombre: "Seminario de integrado en enfermería", requisitos: Array.from({length: 41}, (_, i) => i + 1) }
+  { id: 42, nombre: "Práctica profesional I", requisitos: Array.from({ length: 41 }, (_, i) => i + 1) },
+  { id: 43, nombre: "Práctica profesional II", requisitos: Array.from({ length: 41 }, (_, i) => i + 1) },
+  { id: 44, nombre: "Seminario de integrado en enfermería", requisitos: Array.from({ length: 41 }, (_, i) => i + 1) },
 ];
 
+const mallaDiv = document.getElementById("malla");
 let aprobados = new Set();
 
-function crearMalla() {
-  const contenedor = document.getElementById("malla");
+function renderMalla() {
+  mallaDiv.innerHTML = "";
   ramos.forEach(ramo => {
     const div = document.createElement("div");
-    div.className = "ramo bloqueado";
-    div.textContent = `${ramo.id}. ${ramo.nombre}`;
-    div.id = `ramo-${ramo.id}`;
-    div.onclick = () => aprobarRamo(ramo.id);
-    contenedor.appendChild(div);
-  });
-  actualizarEstado();
-}
+    div.className = "ramo";
 
-function aprobarRamo(id) {
-  const ramo = ramos.find(r => r.id === id);
-  if (ramo.requisitos.every(r => aprobados.has(r))) {
-    aprobados.add(id);
-    actualizarEstado();
-  } else {
-    alert("No puedes aprobar este ramo hasta cumplir los requisitos.");
-  }
-}
+    const tieneReq = ramo.requisitos.length > 0;
+    const desbloqueado = ramo.requisitos.every(r => aprobados.has(r));
 
-function actualizarEstado() {
-  ramos.forEach(ramo => {
-    const div = document.getElementById(`ramo-${ramo.id}`);
     if (aprobados.has(ramo.id)) {
-      div.className = "ramo aprobado";
-    } else if (ramo.requisitos.every(r => aprobados.has(r))) {
-      div.className = "ramo";
-    } else {
-      div.className = "ramo bloqueado";
+      div.classList.add("aprobado");
+    } else if (tieneReq && !desbloqueado) {
+      div.classList.add("bloqueado");
     }
+
+    div.innerHTML = `<strong>${ramo.id}. ${ramo.nombre}</strong>`;
+    if (tieneReq) {
+      div.innerHTML += `<small>Requisitos: ${ramo.requisitos.join(", ")}</small>`;
+    }
+
+    div.onclick = () => {
+      if (div.classList.contains("bloqueado")) {
+        alert("Debes aprobar los requisitos primero.");
+        return;
+      }
+      if (!aprobados.has(ramo.id)) {
+        aprobados.add(ramo.id);
+        renderMalla();
+      }
+    };
+
+    mallaDiv.appendChild(div);
   });
 }
 
-window.onload = crearMalla;
+renderMalla();
